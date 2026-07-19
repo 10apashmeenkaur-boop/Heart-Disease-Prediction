@@ -1,157 +1,177 @@
-# Heart Disease Prediction
+# ❤️ Heart Disease Prediction System
 
-- LinkedIn [Hema Kalyan Murapaka](https://www.linkedin.com/in/hemakalyan)
-- Medium [KalyanMurapaka274](https://medium.com/@kalyanmurapaka274)
+An end-to-end Machine Learning web application for predicting the likelihood of heart disease using clinical parameters. The project demonstrates a complete ML workflow including data preprocessing, model training, experiment tracking, deployment, and a user-friendly Flask interface.
 
+---
 
-## About The Project
+## 🚀 Features
 
+- Predicts heart disease risk from patient health parameters
+- Interactive Flask web application
+- Data preprocessing and feature engineering pipeline
+- Model training and evaluation
+- MLflow experiment tracking
+- DVC for dataset versioning
+- Docker support for deployment
+- Modular project architecture
 
-Heart disease prediction is a crucial aspect of preventive healthcare that involves the comprehensive analysis of diverse data points to evaluate an individual's susceptibility to cardiovascular diseases. This process integrates demographic details like age and gender with critical clinical information, including medical and family histories, lifestyle choices, and existing health conditions such as hypertension or diabetes. By examining biomarkers like blood pressure, cholesterol levels, and blood sugar, alongside results from medical tests and imaging studies, predictive models can identify patterns and trends indicative of potential heart issues. Machine learning algorithms play a pivotal role in processing this information, helping stratify individuals into risk categories. The ultimate goal is to enable timely interventions and personalized preventive strategies, empowering individuals to make lifestyle adjustments that can mitigate the risk of heart-related events like heart attacks or strokes. Continuous monitoring and updating of predictive models ensure ongoing accuracy and effectiveness in supporting proactive heart health management.
+---
 
-## About the Dataset
+## 📊 Dataset
 
-This dataset gives information related to heart disease. The dataset contains 13 columns, target is the class variable which is affected by the other 12 columns. Here the aim is to classify the target variable to (disease\non disease) using different machine learning algorithms and find out which algorithm is suitable for this dataset.
-<br><be>
+The model is trained on a heart disease dataset containing patient clinical attributes.
 
-<h3>Attributes:</h3> 
+### Features
 
- - Age 
- - Gender 
- - Chest Pain Type
- - Resting Blood Pressure
- - Serum Cholesterol 
- - Fasting Blood Sugar 
- - Resting Electrocardiographic Results
- - Maximum Heart Rate Achieved
- - Exercise-induced angina
- - Depression induced by exercise relative to rest
- - Slope of the Peak Exercise ST Segment
- - Number of Major Vessels Colored by Fluoroscopy
- - Thalassemia
- - Target 
+- Age
+- Sex
+- Chest Pain Type
+- Resting Blood Pressure
+- Serum Cholesterol
+- Fasting Blood Sugar
+- Resting ECG
+- Maximum Heart Rate
+- Exercise Induced Angina
+- ST Depression
+- Slope of ST Segment
+- Number of Major Vessels
+- Thalassemia
 
-## Built With
+### Target
 
- - Pandas
- - Numpy
- - Scikit-Learn
- - Seaborn
- - Matplotlib
- - Flask
- - DVC (Data Version Control)
- - MLFlow
- - Catboost
- - XG Boost
+- Heart Disease
+- No Heart Disease
 
-## Getting Started
+---
 
-This will help you understand how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+## 🛠 Tech Stack
 
-## Installation Steps
+### Backend
+- Python
+- Flask
 
-### Option 1: Installation from GitHub
+### Machine Learning
+- Scikit-Learn
+- CatBoost
+- XGBoost
+- Pandas
+- NumPy
 
-Follow these steps to install and set up the project directly from the GitHub repository:
+### Experiment Tracking
+- MLflow
+- DVC
 
-1. **Clone the Repository**
-   - Open your terminal or command prompt.
-   - Navigate to the directory where you want to install the project.
-   - Run the following command to clone the GitHub repository:
-     ```
-     git clone https://github.com/KalyanMurapaka45/Heart-Disease-Prediction.git
-     ```
+### Visualization
+- Matplotlib
+- Seaborn
 
-2. **Create a Virtual Environment** (Optional but recommended)
-   - It's a good practice to create a virtual environment to manage project dependencies. Run the following command:
-     ```
-     conda create -p <Environment_Name> python==<python version> -y
-     ```
+### Deployment
+- Docker
 
-3. **Activate the Virtual Environment** (Optional)
-   - Activate the virtual environment based on your operating system:
-       ```
-       conda activate <Environment_Name>/
-       ```
+---
 
-4. **Install Dependencies**
-   - Navigate to the project directory:
-     ```
-     cd [project_directory]
-     ```
-   - Run the following command to install project dependencies:
-     ```
-     pip install -r requirements.txt
-     ```
+## 📂 Project Structure
 
-5. **Run the Project**
-   - Start the project by running the appropriate command.
-     ```
-     python app.py
-     ```
-
-6. **Access the Project**
-   - Open a web browser or the appropriate client to access the project.
-  
-<br><br>
-### Option 2: Installation from DockerHub
-
-If you prefer to use Docker, you can install and run the project using a Docker container from DockerHub:
-
-1. **Pull the Docker Image**
-   - Open your terminal or command prompt.
-   - Run the following command to pull the Docker image from DockerHub:
-     ```
-     docker pull kalyan45/heart-app
-     ```
-
-2. **Run the Docker Container**
-   - Start the Docker container by running the following command, and mapping any necessary ports:
-     ```
-     docker run -p 5000:5000 kalyan45/heart-app
-     ```
-
-3. **Access the Project**
-   - Open a web browser or the appropriate client to access the project.
-
-## Setup
-
-### MLflow Tracking
-
-We use MLflow to log and track our machine learning experiments. The MLFLOW_TRACKING_URI environment variable is set to the DagsHub repository's MLflow tracking URI.
-
-```bash
-export MLFLOW_TRACKING_URI=https://dagshub.com/HemaKalyan45/Heart-Disease-Prediction.mlflow
-
-export MLFLOW_TRACKING_USERNAME=HemaKalyan45
-
-export MLFLOW_TRACKING_PASSWORD=f3c9457eb0ff83244e93ac8ee651b80d4b35f07c
+```
+Heart-Disease-Prediction
+│
+├── src/
+│   ├── components/
+│   ├── pipeline/
+│   ├── utils/
+│
+├── templates/
+├── static/
+├── Notebook_Experiments/
+├── app.py
+├── requirements.txt
+├── Dockerfile
+└── README.md
 ```
 
-## Contributing
+---
 
-Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+## ⚙️ Installation
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Clone the repository
 
-1. Fork the Project
-2. Create your Feature Branch
-3. Commit your Changes
-4. Push to the Branch
-5. Open a Pull Request
+```bash
+git clone https://github.com/10apashmeenkaur-boop/Heart-Disease-Prediction.git
+```
 
-## License
+Move into the project
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+```bash
+cd Heart-Disease-Prediction
+```
+
+Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+Activate it
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application
+
+```bash
+python app.py
+```
+
+Visit
+http://127.0.0.1:5000
 
 
-## Contact
+## 📈 Machine Learning Workflow
 
-Hema Kalyan Murapaka - [@kalyanmurapaka274@gmail.com](kalyanmurapaka274@gmail.com)
+- Data Ingestion
+- Data Cleaning
+- Feature Engineering
+- Model Training
+- Model Evaluation
+- Prediction Pipeline
+- Flask Deployment
 
+## 📷 Application
+
+The web application allows users to enter patient health information and predicts the likelihood of heart disease using the trained machine learning model.
+
+## 🔮 Future Improvements
+
+- User Authentication
+- Cloud Deployment
+- REST API Support
+- Model Monitoring
+- Explainable AI (SHAP)
+
+## 📄 License
+
+This project is licensed under the MIT License.
+## 👤 Author
+
+**Pashmeen Kaur**
+
+Chemical Engineering Undergraduate, NIT Raipur
+
+GitHub:
+https://github.com/10apashmeenkaur-boop
+
+LinkedIn:
+(Add your LinkedIn URL)
 
 ## Acknowledgements
 
-We'd like to extend our gratitude to all individuals and organizations who have played a role in the development and success of this project. Your support, whether through contributions, inspiration, or encouragement, has been invaluable. Thank you for being a part of our journey.
+This repository is based on an open-source Heart Disease Prediction project and has been adapted for learning, experimentation, and deployment practice. Additional modifications, setup, and documentation have been added during customization.
