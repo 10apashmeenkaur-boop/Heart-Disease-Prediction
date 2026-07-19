@@ -1,88 +1,229 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Disease Prediction</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>CardioCheck — Heart Disease Risk Assessment</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f4f7fb 0%, #e8eef5 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
+            color: #fff;
+            padding: 32px 40px;
+            text-align: center;
+        }
+        .header .icon { font-size: 40px; margin-bottom: 8px; }
+        .header h1 { font-size: 26px; font-weight: 600; letter-spacing: 0.3px; }
+        .header p { font-size: 14px; opacity: 0.9; margin-top: 6px; }
+        .disclaimer {
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+            padding: 14px 20px;
+            margin: 24px 40px 0;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #92400e;
+        }
+        form { padding: 24px 40px 40px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
+        .field { display: flex; flex-direction: column; }
+        .field.full { grid-column: 1 / -1; }
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        input, select {
+            padding: 11px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #0f172a;
+            background: #f8fafc;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #0891b2;
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.12);
+            background: #fff;
+        }
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 12px;
+            font-weight: 700;
+            color: #0891b2;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 18px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        button {
+            width: 100%;
+            margin-top: 32px;
+            padding: 15px;
+            background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: opacity 0.15s, transform 0.1s;
+        }
+        button:hover { opacity: 0.92; }
+        button:active { transform: scale(0.99); }
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            padding: 0 40px 28px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <h1><center>Heart Disease Prediction</center></h1>
+    <div class="container">
+        <div class="header">
+            <div class="icon">❤️</div>
+            <h1>CardioCheck</h1>
+            <p>Heart Disease Risk Assessment Tool</p>
+        </div>
+
+        <div class="disclaimer">
+            ⚠️ This tool provides a statistical estimate based on a machine learning model and is <strong>not a medical diagnosis</strong>. Always consult a qualified cardiologist or physician for actual medical evaluation.
+        </div>
+
         <form method="post">
-            <label for="age">Age:</label>
-            <input type="text" name="age" required>
+            <div class="grid">
+                <div class="section-title">Patient Information</div>
 
-            <label for="sex">Sex:</label>
-            <select name="sex" required>
-                <option value="0">Female</option>
-                <option value="1">Male</option>
-            </select>
+                <div class="field">
+                    <label for="age">Age (years)</label>
+                    <input type="number" name="age" min="1" max="120" required>
+                </div>
 
-            <label for="cp">Chest Pain Type:</label>
-            <select name="cp" required>
-                <option value="0">Typical Angina</option>
-                <option value="1">Atypical Angina</option>
-                <option value="2">Non-Anginal Pain</option>
-                <option value="3">Asymptomatic</option>
-            </select>
+                <div class="field">
+                    <label for="sex">Sex</label>
+                    <select name="sex" required>
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
+                    </select>
+                </div>
 
-            <label for="trestbps">Resting Blood Pressure (mm Hg):</label>
-            <input type="text" name="trestbps" required>
+                <div class="section-title">Symptoms &amp; Clinical Signs</div>
 
-            <label for="chol">Serum Cholesterol (mg/dl):</label>
-            <input type="text" name="chol" required>
+                <div class="field full">
+                    <label for="cp">Chest Pain Type</label>
+                    <select name="cp" required>
+                        <option value="1">Typical Angina</option>
+                        <option value="2">Atypical Angina</option>
+                        <option value="3">Non-Anginal Pain</option>
+                        <option value="4">Asymptomatic</option>
+                    </select>
+                </div>
 
-            <label for="fbs">Fasting Blood Sugar > 120 mg/dl:</label>
-            <select name="fbs" required>
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-            </select>
+                <div class="field">
+                    <label for="exang">Exercise-Induced Angina</label>
+                    <select name="exang" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
 
-            <label for="restecg">Resting Electrocardiographic Results:</label>
-            <select name="restecg" required>
-                <option value="0">Normal</option>
-                <option value="1">ST-T Wave Abnormality</option>
-                <option value="2">Left Ventricular Hypertrophy</option>
-            </select>
+                <div class="field">
+                    <label for="oldpeak">ST Depression (Oldpeak)</label>
+                    <input type="number" step="0.1" name="oldpeak" required>
+                </div>
 
-            <label for="thalach">Maximum Heart Rate Achieved:</label>
-            <input type="text" name="thalach" required>
+                <div class="section-title">Vitals &amp; Lab Results</div>
 
-            <label for="exang">Exercise Induced Angina:</label>
-            <select name="exang" required>
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-            </select>
+                <div class="field">
+                    <label for="trestbps">Resting Blood Pressure (mm Hg)</label>
+                    <input type="number" name="trestbps" required>
+                </div>
 
-            <label for="oldpeak">Oldpeak:</label>
-            <input type="text" name="oldpeak" required>
+                <div class="field">
+                    <label for="chol">Serum Cholesterol (mg/dl)</label>
+                    <input type="number" name="chol" required>
+                </div>
 
-            <label for="slope">Slope of the Peak Exercise ST Segment:</label>
-            <select name="slope" required>
-                <option value="0">Upsloping</option>
-                <option value="1">Flat</option>
-                <option value="2">Downsloping</option>
-            </select>
+                <div class="field">
+                    <label for="fbs">Fasting Blood Sugar &gt; 120 mg/dl</label>
+                    <select name="fbs" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
 
-            <label for="ca">Number of Major Vessels Colored by Fluoroscopy:</label>
-            <select name="ca" required>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
+                <div class="field">
+                    <label for="thalach">Max Heart Rate Achieved</label>
+                    <input type="number" name="thalach" required>
+                </div>
 
-            <label for="thal">Thalassemia:</label>
-            <select name="thal" required>
-                <option value="0">Normal</option>
-                <option value="1">Fixed Defect</option>
-                <option value="2">Reversible Defect</option>
-            </select>
+                <div class="section-title">Diagnostic Test Results</div>
 
-            <button type="submit">Predict</button>
+                <div class="field">
+                    <label for="restecg">Resting ECG Results</label>
+                    <select name="restecg" required>
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T Wave Abnormality</option>
+                        <option value="2">Left Ventricular Hypertrophy</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="slope">Slope of Peak Exercise ST Segment</label>
+                    <select name="slope" required>
+                        <option value="1">Upsloping</option>
+                        <option value="2">Flat</option>
+                        <option value="3">Downsloping</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="ca">Major Vessels Colored by Fluoroscopy</label>
+                    <select name="ca" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="thal">Thalassemia</label>
+                    <select name="thal" required>
+                        <option value="3">Normal</option>
+                        <option value="6">Fixed Defect</option>
+                        <option value="7">Reversible Defect</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Analyze Risk →</button>
         </form>
+
+        <div class="footer-note">Powered by a machine learning model trained on clinical cardiovascular data.</div>
     </div>
 </body>
 </html>

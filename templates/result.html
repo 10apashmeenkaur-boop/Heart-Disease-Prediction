@@ -1,9 +1,166 @@
-{% if final_result is defined %}
-<div class="result">
-    {% if final_result == 0 %}
-        <center><h1><p>No heart disease detected</p></h1></center>
-    {% else %}
-        <center><h1><p>Suffering from heart disease</p></h1></center>
-    {% endif %}
-</div>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Result — CardioCheck</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f4f7fb 0%, #e8eef5 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+        }
+        .result-banner {
+            padding: 40px;
+            text-align: center;
+            color: #fff;
+        }
+        .result-banner.negative { background: linear-gradient(135deg, #0f766e 0%, #059669 100%); }
+        .result-banner.positive { background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%); }
+        .result-banner .icon { font-size: 48px; margin-bottom: 10px; }
+        .result-banner h1 { font-size: 24px; font-weight: 700; }
+        .result-banner .sub { font-size: 14px; opacity: 0.92; margin-top: 8px; }
+
+        .body-content { padding: 32px 40px 40px; }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .risk-badge.low { background: #d1fae5; color: #065f46; }
+        .risk-badge.elevated { background: #fee2e2; color: #991b1b; }
+
+        h2.section-heading {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #0891b2;
+            margin: 24px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        ul.info-list { list-style: none; }
+        ul.info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 14.5px;
+            line-height: 1.5;
+            display: flex;
+            gap: 10px;
+        }
+        ul.info-list li::before { content: "•"; color: #0891b2; font-weight: 700; }
+
+        .disclaimer-box {
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #92400e;
+            margin-top: 28px;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 28px;
+            padding: 13px;
+            background: #0f172a;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .back-btn:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if final_result == 0 %}
+        <div class="result-banner negative">
+            <div class="icon">✅</div>
+            <h1>No Heart Disease Indicators Detected</h1>
+            <div class="sub">Based on the clinical parameters you entered</div>
+        </div>
+        {% else %}
+        <div class="result-banner positive">
+            <div class="icon">⚠️</div>
+            <h1>Indicators Suggest Possible Heart Disease</h1>
+            <div class="sub">Based on the clinical parameters you entered</div>
+        </div>
+        {% endif %}
+
+        <div class="body-content">
+            {% if final_result == 0 %}
+                <span class="risk-badge low">Low Statistical Risk</span>
+
+                <h2 class="section-heading">What This Means</h2>
+                <ul class="info-list">
+                    <li>The model did not find a pattern in your inputs strongly associated with heart disease in its training data.</li>
+                    <li>This is a reassuring result, but it does not rule out cardiovascular risk entirely — many risk factors develop silently over time.</li>
+                </ul>
+
+                <h2 class="section-heading">General Suggestions</h2>
+                <ul class="info-list">
+                    <li>Maintain a heart-healthy diet low in saturated fat, salt, and added sugar.</li>
+                    <li>Aim for at least 150 minutes of moderate exercise per week, if medically appropriate for you.</li>
+                    <li>Avoid tobacco use and limit alcohol consumption.</li>
+                    <li>Keep routine annual checkups, especially if you have a family history of heart disease.</li>
+                    <li>Monitor blood pressure, cholesterol, and blood sugar periodically even without symptoms.</li>
+                </ul>
+            {% else %}
+                <span class="risk-badge elevated">Elevated Statistical Risk</span>
+
+                <h2 class="section-heading">What This Means</h2>
+                <ul class="info-list">
+                    <li>Your combination of inputs matches patterns the model associates with heart disease in its training data.</li>
+                    <li>This is a statistical signal, not a clinical diagnosis — it should prompt follow-up, not panic.</li>
+                </ul>
+
+                <h2 class="section-heading">Suggested Next Steps</h2>
+                <ul class="info-list">
+                    <li>Schedule an appointment with a cardiologist or your primary care physician promptly.</li>
+                    <li>Avoid strenuous physical exertion until you've been medically evaluated.</li>
+                    <li>Keep a record of any symptoms: chest pain, shortness of breath, palpitations, dizziness, or fatigue.</li>
+                    <li>If you experience severe chest pain, pressure, or breathlessness right now, seek emergency medical care immediately.</li>
+                </ul>
+
+                <h2 class="section-heading">Tests a Doctor May Recommend</h2>
+                <ul class="info-list">
+                    <li><strong>ECG (Electrocardiogram)</strong> — measures the heart's electrical activity.</li>
+                    <li><strong>Echocardiogram</strong> — ultrasound imaging of heart structure and function.</li>
+                    <li><strong>Stress Test</strong> — evaluates heart performance under physical exertion.</li>
+                    <li><strong>Lipid Profile &amp; Blood Glucose Panel</strong> — checks cholesterol and blood sugar levels.</li>
+                    <li><strong>Coronary Angiography</strong> — imaging of blood flow through coronary arteries, if further indicated.</li>
+                </ul>
+            {% endif %}
+
+            <div class="disclaimer-box">
+                ⚠️ <strong>Medical Disclaimer:</strong> This result is generated by a machine learning model for educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of a physician or other qualified health provider regarding any medical condition.
+            </div>
+
+            <a href="/" class="back-btn">← Run Another Assessment</a>
+        </div>
+    </div>
+</body>
+</html>
