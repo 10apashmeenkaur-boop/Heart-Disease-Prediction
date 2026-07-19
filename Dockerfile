@@ -1,5 +1,5 @@
 # FROM  - the base image to use to start the build process.
-FROM python:3.8-slim-buster
+FROM python:3.11-slim
 
 # WORKDIR - sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile.
 WORKDIR /app
