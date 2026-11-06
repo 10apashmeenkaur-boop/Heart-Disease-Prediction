@@ -169,11 +169,6 @@ GitHub:
 https://github.com/10apashmeenkaur-boop
 
 
-## Acknowledgements
+## Credits
 
-Built on top of an open-source heart disease prediction project. My work on it:
-
-- Redesigned the web UI with clean medical styling and a detailed results view
-- Added the trained model and preprocessor artifacts so the app runs out of the box
-- Fixed the Dockerfile (Python 3.11 to match the requirements) and other deployment issues
-- Prepared and deployed the app to the cloud
+Started from an open-source baseline. The redesigned UI, model packaging, Docker setup and deployment are my work.
