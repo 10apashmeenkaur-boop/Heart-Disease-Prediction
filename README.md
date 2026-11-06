@@ -152,14 +152,13 @@ The web application allows users to enter patient health information and predict
 ## 🔮 Future Improvements
 
 - User Authentication
-- Cloud Deployment
 - REST API Support
 - Model Monitoring
 - Explainable AI (SHAP)
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the GNU GPL v3.0. See [LICENSE](LICENSE).
 ## 👤 Author
 
 **Pashmeen Kaur**
@@ -169,9 +168,12 @@ Chemical Engineering Undergraduate, NIT Raipur
 GitHub:
 https://github.com/10apashmeenkaur-boop
 
-LinkedIn:
-(Add your LinkedIn URL)
 
 ## Acknowledgements
 
-This repository is based on an open-source Heart Disease Prediction project and has been adapted for learning, experimentation, and deployment practice. Additional modifications, setup, and documentation have been added during customization.
+Built on top of an open-source heart disease prediction project. My work on it:
+
+- Redesigned the web UI with clean medical styling and a detailed results view
+- Added the trained model and preprocessor artifacts so the app runs out of the box
+- Fixed the Dockerfile (Python 3.11 to match the requirements) and other deployment issues
+- Prepared and deployed the app to the cloud
